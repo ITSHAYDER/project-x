@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    line-height: 1.6;
+    letter-spacing: 0;
+    background:
+      linear-gradient(90deg, rgba(63, 93, 82, 0.045) 1px, transparent 1px),
+      linear-gradient(rgba(63, 93, 82, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #f7f5ef 0%, #f0f3ed 100%);
+    background-size: 32px 32px, 32px 32px, 100% 100%;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(109, 143, 132, 0.2);
+  }
+
+  a {
+    @apply transition-colors duration-200 ease-out;
+  }
+
+  p,
+  li,
+  span,
+  button,
+  input,
+  textarea {
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.pine.DEFAULT");
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@keyframes gentle-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-gentle-in {
+  animation: gentle-in 0.45s ease-out;
+}
+
+@layer components {
+  .soft-panel {
+    @apply rounded-xl border border-hairline bg-[#fffdf8]/90 shadow-[0_10px_30px_rgba(34,47,39,0.055)];
+  }
+
+  .hero-surface {
+    background: #344b40;
+    box-shadow: 0 24px 55px rgba(34, 47, 39, 0.18);
+  }
+
+  .metric-card {
+    @apply soft-panel flex min-h-[118px] flex-col justify-between p-4 sm:p-5;
+  }
+
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-[0.2em] text-pine-dark/75;
+  }
+
+  .nav-pill {
+    @apply rounded-lg px-3 py-2 text-sm text-ink/60 transition-colors hover:bg-pine-soft hover:text-pine-dark;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #223029 !important;
+  }
+
+  .app-shell-header,
+  .print-visit-brief button,
+  .print-visit-brief a {
+    display: none !important;
+  }
+
+  .print-visit-brief {
+    max-width: none !important;
+    gap: 12px !important;
+  }
+
+  .print-visit-brief .hero-surface {
+    border-bottom: 1px solid #bbb;
+    border-radius: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    padding: 0 0 12px !important;
+  }
+
+  .print-visit-brief .hero-surface * {
+    color: #223029 !important;
+  }
+
+  .print-visit-brief .soft-panel {
+    break-inside: avoid;
+    border-color: #bbb !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+}
+
+
