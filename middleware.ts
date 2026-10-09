@@ -1,12 +1,12 @@
-import { type NextRequest } from "next/server";
-import { updateSession } from "@/lib/supabase/middleware";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+// Coarse gate only (cookie present). Real authorization happens in pages, actions and the engine.
+export function middleware(req: NextRequest) {
+  const p = req.nextUrl.pathname;
+  if ((p.startsWith('/patient') || p.startsWith('/clinician') || p.startsWith('/api/export')) && !req.cookies.get('px_user') && !req.cookies.get('px_session')) {
+    return NextResponse.redirect(new URL('/', req.url));
+  }
+  return NextResponse.next();
 }
-
-export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
-};
+export const config = { matcher: ['/patient/:path*', '/clinician/:path*', '/api/export'] };

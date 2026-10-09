@@ -1,28 +1,37 @@
 {
-  "name": "project-x",
+  "name": "project-x-playbook",
   "version": "0.1.0",
   "private": true,
+  "description": "Project X: a patient-owned longitudinal record with a living case-formulation Map and Playbook. Demo mode with synthetic data; clinician-first.",
+  "engines": {
+    "node": ">=22.6"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "start:product": "cross-env APP_MODE=product next start",
+    "dev:product": "cross-env APP_MODE=product next dev",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/engine.test.ts tests/app.test.ts tests/features.test.ts tests/mvp-domain.test.ts tests/accounts.test.ts",
+    "test:e2e": "playwright test",
+    "ai:diagnose": "node scripts/ai-diagnose.mjs"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.5.2",
-    "@supabase/supabase-js": "^2.45.4",
-    "next": "14.2.35",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "zod": "^3.23.8"
+    "next": "14.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.9",
-    "@types/react": "^18.3.3",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^22.7.0",
+    "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.3"
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2"
   }
 }

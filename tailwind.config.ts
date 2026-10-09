@@ -1,35 +1,26 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        paper: "#F4F4EE",
-        ink: "#223029",
-        pine: {
-          DEFAULT: "#3F5D52",
-          soft: "#E4ECE5",
-          dark: "#294238",
-        },
-        clay: {
-          DEFAULT: "#D96F52",
-          soft: "#FBE6DC",
-        },
-        hairline: "#D8DED7",
-        sky: "#A8C8C1",
-        night: "#223029",
+        paper: 'var(--paper)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
+        line: 'var(--line)',
+        accent: 'var(--accent)',
+        'accent-soft': 'var(--accent-soft)',
+        amber: 'var(--amber)',
+        'amber-soft': 'var(--amber-soft)',
+        card: 'var(--card)',
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
-        sans: ["var(--font-public-sans)", "system-ui", "sans-serif"],
+        serif: ['var(--font-serif)'],
+        sans: ['var(--font-sans)'],
       },
     },
   },
   plugins: [],
 };
-
 export default config;
